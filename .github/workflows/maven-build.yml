@@ -1,4 +1,4 @@
-name: Maven Build Verification
+name: Appium Android CI
 
 on:
   push:
@@ -7,22 +7,33 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  android-tests:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout project
         uses: actions/checkout@v4
 
-      - name: Set up Java 17
+      - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
-          cache: maven
 
-      - name: Verify Java version
-        run: java -version
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
-      - name: Compile project
-        run: mvn clean compile test-compile
+      - name: Install Appium
+        run: |
+          npm install -g appium
+          appium driver install uiautomator2
+
+      - name: Start Appium server
+        run: |
+          appium &
+          sleep 10
+
+      - name: Run tests
+        run: mvn clean test
