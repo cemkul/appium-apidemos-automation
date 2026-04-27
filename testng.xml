@@ -1,0 +1,25 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="AppiumSuite">
+
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+        <listener class-name="listeners.TestListener"/>
+    </listeners>
+
+    <test name="ApiDemosTests">
+        <classes>
+            <class name="tests.DarkThemeTests"/>
+            <class name="tests.PopupMenuTests"/>
+            <class name="tests.LightThemeTests"/>
+            <class name="tests.DateWidgetsTests"/>
+            <class name="tests.ExpandableListsTests"/>
+            <class name="tests.AlertDialogsTests"/>
+            <class name="tests.SearchViewTests"/>
+            <class name="tests.TabsTests"/>
+            <class name="tests.WebViewTests"/>
+            <class name="tests.SpinnerTests"/>
+            <class name="tests.ButtonsTests"/>
+        </classes>
+    </test>
+
+</suite>
