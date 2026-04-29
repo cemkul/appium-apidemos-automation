@@ -22,7 +22,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20.19.0
-
+      - name: Enable KVM
+        run: |
+          sudo chmod 666 /dev/kvm || true
+          ls -al /dev/kvm || true
       - name: Install Appium and UiAutomator2
         run: |
           npm install -g appium@3.3.0
